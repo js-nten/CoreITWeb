@@ -129,24 +129,35 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImmigrationStatusController.cs" />
+    <Compile Include="Controllers\PaymentsAPIController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\SalaryAPIController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VendorAPIController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\EmployeeRepository.cs" />
-    <Compile Include="Migrations\201411201851368_20141120_Address.cs" />
-    <Compile Include="Migrations\201411201851368_20141120_Address.Designer.cs">
-      <DependentUpon>201411201851368_20141120_Address.cs</DependentUpon>
+    <Compile Include="Migrations\201411212023368_20141121_Initial.cs" />
+    <Compile Include="Migrations\201411212023368_20141121_Initial.Designer.cs">
+      <DependentUpon>201411212023368_20141121_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411212210529_Payment_20141121.cs" />
+    <Compile Include="Migrations\201411212210529_Payment_20141121.Designer.cs">
+      <DependentUpon>201411212210529_Payment_20141121.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\CoreITDemoContext.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Salary.cs" />
+    <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\ImmigrationStatusList.cs" />
+    <Compile Include="ViewModels\VendorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\ajax-loader.gif" />
@@ -424,6 +435,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Payments.js" />
     <Content Include="Scripts\Employee.js" />
     <Content Include="Scripts\jquery.mobile-1.4.2.js" />
     <Content Include="Scripts\jquery.mobile-1.4.2.min.js" />
@@ -478,6 +490,8 @@
     <Content Include="Views\Employee\AddEmployee.cshtml">
       <BrowseToURL>~/Employee/AddEmployee</BrowseToURL>
     </Content>
+    <Content Include="Views\Vendor\Vendors.cshtml" />
+    <Content Include="Views\Payments\Payments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -489,8 +503,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201411201851368_20141120_Address.resx">
-      <DependentUpon>201411201851368_20141120_Address.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411212023368_20141121_Initial.resx">
+      <DependentUpon>201411212023368_20141121_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411212210529_Payment_20141121.resx">
+      <DependentUpon>201411212210529_Payment_20141121.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

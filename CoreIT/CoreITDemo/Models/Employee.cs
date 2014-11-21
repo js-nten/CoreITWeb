@@ -12,6 +12,7 @@ namespace CoreITDemo.Models
         {
             this.SalaryRecords = new HashSet<Salary>();
             this.Address = new HashSet<Address>();
+            this.Payments = new HashSet<Payment>();
         }
         [Key]
         public int EmpId { get; set; }
@@ -21,6 +22,7 @@ namespace CoreITDemo.Models
         public DateTime HireDate { get; set; }
 
         public virtual ICollection<Salary> SalaryRecords { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<Address> Address { get; set; }
     }
 

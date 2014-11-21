@@ -22,7 +22,8 @@ namespace CoreITDemo.Models
         public string EmailId { get; set; }
         public bool IsCurrent { get; set; }
 
-        public virtual Employee Employee { get; set; }   
+        public virtual Employee Employee { get; set; }
+        public virtual Vendor Vendor { get; set; }   
     }
 
     public enum AddressEntity

@@ -27,5 +27,7 @@ namespace CoreITDemo.ViewModels
         public string Contact { get; set; }
         public string EmailId { get; set; }
 
+        public string FullAddress { get; set; }
+
     }
 }

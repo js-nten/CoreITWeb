@@ -42,7 +42,7 @@
             <input type="text" placeholder="State" data-bind="value: $root.StateOrProvince" maxlength="2" />
         </div>
         <div>
-            <input type="text" placeholder="PostalCode" data-bind="value: $root.PostalCode"  />
+            <input type="text" placeholder="PostalCode" data-bind="value: $root.PostalCode" />
         </div>
         <div>
             <input type="tel" placeholder="Contact" maxlength="10" data-bind="value: $root.Contact" />
@@ -59,18 +59,16 @@
         <div class="Registration-header">Employee</div>
         <table>
             <tr>
-                <th>Id
-                </th>
-                <th>Firstname
-                </th>
-                <th>Lastname
-                </th>
-                <th>ImmigrationStatus
-                </th>
-                <th>Salary
-                </th>
-                <th>Action
-                </th>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Join Date</th>
+                <th>ImmigrationStatus</th>
+                <th>Salary</th>
+                <th>Address</th>
+                <th>Contact No</th>
+                <th>EmailId</th>
+                <th>Action</th>
             </tr>
 
             <tbody data-bind="template: {name: currentTemplate, foreach: Employees}"></tbody>
@@ -80,8 +78,12 @@
                 <td data-bind="text: EmpId"></td>
                 <td data-bind="text: Firstname"></td>
                 <td data-bind="text: Lastname"></td>
+                <td data-bind="text: HireDate"></td>
                 <td data-bind="text: ImmigrationStatus"></td>
                 <td data-bind="text: Salary"></td>
+                <td data-bind="text: FullAddress"></td>
+                <td data-bind="text: Contact"></td>
+                <td data-bind="text: EmailId"></td>
                 <td>
                     <input type="button" id="btnEdit" value="Edit" data-bind="click: function(){ $root.editTemplate($data);}" />
                     <input type="button" id="btnDelete" value="Delete" data-bind="click: function() { $root.DeleteEmployee($data);}" />
@@ -90,7 +92,7 @@
         </script>
         <script type="text/html" id="editTemplate">
             <tr>
-                <td data-bind="text: $data.EmpId" ></td>                
+                <td data-bind="text: $data.EmpId"></td>
                 <td>
                     <input type="text" class="editTemplate-inbox" id="edtFname" data-bind="value: $data.Firstname" />
                 </td>
@@ -102,8 +104,21 @@
                     </select>
                 </td>
                 <td>
+                    <input type="date" name="hireDate" class="editTemplate-inbox" id="edit-hireDate" data-bind="value: $data.HireDate" />
+                </td>
+                <td>
                     <input type="text" class="editTemplate-inbox" id="edtSalary" data-bind="value: $data.Salary" />
                 </td>
+                <td>
+                    <input type="text" class="editTemplate-inbox" id="fullAddress" data-bind="value: $data.FullAddress" disabled="disabled" />
+                </td>
+                <td>
+                    <input type="email" class="editTemplate-inbox" id="edit-contact" data-bind="value: $data.Contact" disabled="disabled" />
+                </td>
+                <td>
+                    <input type="email" class="editTemplate-inbox" id="EmailId" data-bind="value: $data.EmailId" />
+                </td>
+
                 <td>
                     <input type="button" id="btnSave" value="Save" data-bind="click: $root.UpdateEmployee" />
                     <input type="button" id="btnCancel" value="Cancel" data-bind="click: function() { $root.reset();}" />

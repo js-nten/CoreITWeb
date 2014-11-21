@@ -39,13 +39,26 @@ namespace CoreITDemo.Migrations
             };
             context.Salaries.AddOrUpdate(salParams);
 
+            context.Vendors.AddOrUpdate(v => v.VendorId,
+                new Vendor() { VendorName = "Software Global Ltd", IsActive = true, ModifiedDate= DateTime.Now },
+                new Vendor() { VendorName = "Experis Consulting Comp", IsActive = true, ModifiedDate = DateTime.Now }
+                );
+
             Address[] AddressList = new[] {
                 new Address(){ EntityType = AddressEntity.Employee, EntityId = 1, Address1="2500 OLDFARM RD", City="Houston", StateOrProvince="TX", PostalCode="77063", IsCurrent=true, Contact="479-787-8786", EmailId="nagesh_tenugu@gmail.com"},
                 new Address(){ EntityType = AddressEntity.Employee, EntityId = 2, Address1="2500 OLDFARM RD", City="Houston", StateOrProvince="TX", PostalCode="77063", IsCurrent=true, Contact="409-330-7608", EmailId="puram.harshini@gmail.com"},
-                new Address(){ EntityType = AddressEntity.Employee, EntityId = 3, Address1="7979 Westhiemer", City="Houston", StateOrProvince="TX", PostalCode="77063", IsCurrent=true, Contact="795-457-8786", EmailId="siva_km@gmail.com"}
+                new Address(){ EntityType = AddressEntity.Employee, EntityId = 3, Address1="7979 Westhiemer", City="Houston", StateOrProvince="TX", PostalCode="77063", IsCurrent=true, Contact="795-457-8786", EmailId="siva_km@gmail.com"},
+                new Address(){ EntityType = AddressEntity.Vendor, EntityId = 1, Address1="PO BOX 80498", City="Austin", StateOrProvince="TX", PostalCode="78708", IsCurrent=true, Contact="795-457-8786", EmailId="info@softwareglobalusa.com"},
+                new Address(){ EntityType = AddressEntity.Vendor, EntityId = 2, Address1="2500 Dallas street", City="San Jose", StateOrProvince="CA", PostalCode="58745", IsCurrent=true, Contact="795-457-8786", EmailId="info@experisusa.com"},
             };
             context.Address.AddOrUpdate(AddressList);
-            
+
+            Payment[] payments = new[]{
+                new Payment(){ EmpId= 1, PaidAmount=2550.00M, PaidOn= new DateTime(2013,12,18), PaymentType = PaymentType.MonthlyPay, Comments="MonthlyPay", TransactionDate=new DateTime(2013,12,18)},
+                new Payment(){ EmpId= 3, PaidAmount=4500.00M, PaidOn= new DateTime(2014,03,15), PaymentType = PaymentType.MonthlyPay, Comments="MonthlyPay", TransactionDate=new DateTime(2013,12,18)},
+                new Payment(){ EmpId= 1, PaidAmount=2500.00M, PaidOn= new DateTime(2014,06,15), PaymentType = PaymentType.MiscExpenses, Comments="Insurnace money", TransactionDate=new DateTime(2014,06,15)}
+            };
+            context.Payments.AddOrUpdate(payments);
         }
     }
 }

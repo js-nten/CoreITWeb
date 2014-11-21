@@ -21,6 +21,8 @@ namespace CoreITDemo.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Salary> Salaries { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -28,8 +30,12 @@ namespace CoreITDemo.Models
             
             modelBuilder.Entity<Salary>().HasKey(s => new { s.EmpId, s.EffectiveFrom, s.ExpirationDate });
             modelBuilder.Entity<Salary>().HasRequired(s => s.Employee).WithMany(e => e.SalaryRecords).HasForeignKey(p => p.EmpId).WillCascadeOnDelete();
-                        
+
+            modelBuilder.Entity<Payment>().HasKey(p => new { p.EmpId, p.PaymentType });
+            modelBuilder.Entity<Payment>().HasRequired(p => p.Employee).WithMany(e => e.Payments).HasForeignKey(p => p.EmpId).WillCascadeOnDelete();
             base.OnModelCreating(modelBuilder);
         }
+
+        
     }
 }

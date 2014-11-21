@@ -39,6 +39,7 @@ namespace CoreITDemo.Controllers
                        join a in db.Address on e.EmpId equals a.EntityId
                        join s in db.Salaries on e.EmpId equals s.EmpId into ljresults
                        from rs in ljresults.DefaultIfEmpty()
+                       where a.EntityType == AddressEntity.Employee
                        select new
                        {
                            e.EmpId,
@@ -50,15 +51,17 @@ namespace CoreITDemo.Controllers
                            SalaryEffectiveDate = (DateTime?)rs.ExpirationDate,
                            a.Address1,
                            a.Address2,
-                           a.City,
+                           a.City,                           
                            a.StateOrProvince,
                            a.PostalCode,
+                           a.Contact,
                            a.EmailId,
                            a.IsCurrent
                        }).ToList();
 
             IEnumerable<EmployeeDTO> empDTO = from e in emp
-                                              where (e.SalaryEffectiveDate == null || e.SalaryEffectiveDate.Value.CompareTo(DateTime.Today) > 0) && e.IsCurrent == true
+                                              where (e.SalaryEffectiveDate == null || e.SalaryEffectiveDate.Value.CompareTo(DateTime.Today) > 0) 
+                                              && e.IsCurrent == true 
                                               select new EmployeeDTO()
                                               {
                                                   EmpId = e.EmpId,
@@ -71,8 +74,10 @@ namespace CoreITDemo.Controllers
                                                   Address2 = e.Address2,
                                                   City = e.City,
                                                   StateOrProvince = e.StateOrProvince,
-                                                  PostalCode = e.PostalCode,
-                                                  EmailId = e.EmailId
+                                                  PostalCode = e.PostalCode,                                                  
+                                                  Contact = e.Contact,
+                                                  EmailId = e.EmailId,
+                                                  FullAddress = e.Address1 + "," + e.Address2 + "\n" + e.City + "-" + e.StateOrProvince + "\n" + e.PostalCode
                                               };
 
             return empDTO;

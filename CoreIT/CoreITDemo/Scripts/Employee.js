@@ -10,8 +10,8 @@
 
         //List of Employee Attributes
         self.EmpId = ko.observable('');
-        self.Firstname = ko.observable('').extend({ required: true });
-        self.Lastname = ko.observable('').extend({ required: true });
+        self.Firstname = ko.observable('');
+        self.Lastname = ko.observable('');
         self.SelectedImmigrationStatus = ko.observable();
         self.Salary = ko.observable();
         self.HireDate = ko.observable();
@@ -22,7 +22,8 @@
         self.StateOrProvince = ko.observable();
         self.PostalCode = ko.observable();
         self.Contact = ko.observable();
-        self.EmailId = ko.observable().extend({ email: true });
+        self.EmailId = ko.observable();
+        self.FullAddress = ko.observable();
 
         var Employee = {
             EmpId: self.EmpId,
@@ -38,13 +39,12 @@
             StateOrProvince: self.StateOrProvince,
             PostalCode: self.PostalCode,
             Contact: self.Contact,
-            EmailId: self.EmailId
+            EmailId: self.EmailId,
+            FullAddress: self.FullAddress
         };
 
         self.Employee = ko.observable();
-
-       
-
+        
         //Current template binder
         self.currentTemplate = function (templt) {
             return templt === self.editTemplate() ? 'editTemplate' : self.readonlyTemplate();
@@ -53,19 +53,18 @@
         //Get All Employee
         self.Retrieve = function () {
 
-            self.Employees.removeAll();
-            //alert("Before: " + self.Employees.length);
+            self.Employees.removeAll();            
 
             $.getJSON("/api/Employeeapi", function (data) {
                 $.each(data, function (key, value) {
                     if (value != 1) {
                         $.each(value, function (k, l) {
                             self.Employees.push(l);
+                            alert(l.EmpId + " : " + l.Contact + " : " + l.EmailId);
                         });
                     };
                 });
-            });
-            //alert("After: " +  self.Employees.length);
+            });            
         };
 
         //Retrieve Immigration Enumerations from server
@@ -153,6 +152,7 @@
         };
 
         self.reset = function (t) {
+            alert('cancel triggered');
             self.editTemplate("readonlyTemplate");
             self.Retrieve();
         };

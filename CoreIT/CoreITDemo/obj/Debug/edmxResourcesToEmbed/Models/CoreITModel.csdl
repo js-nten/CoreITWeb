@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoreITModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CoreITEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="CoreITModel.Address" />
+    <EntitySet Name="AddressEntities" EntityType="CoreITModel.AddressEntity" />
+    <EntitySet Name="AssignmentDetails" EntityType="CoreITModel.AssignmentDetail" />
+    <EntitySet Name="Employees" EntityType="CoreITModel.Employee" />
+    <EntitySet Name="Expenses" EntityType="CoreITModel.Expens" />
+    <EntitySet Name="ImmigrationDetails" EntityType="CoreITModel.ImmigrationDetail" />
+    <EntitySet Name="PaymentDetails" EntityType="CoreITModel.PaymentDetail" />
+    <EntitySet Name="Salaries" EntityType="CoreITModel.Salary" />
+    <EntitySet Name="StateProvinces" EntityType="CoreITModel.StateProvince" />
+    <EntitySet Name="Vendors" EntityType="CoreITModel.Vendor" />
+    <EntitySet Name="VisaStatus" EntityType="CoreITModel.VisaStatu" />
+    <AssociationSet Name="FK_Address_Entity" Association="CoreITModel.FK_Address_Entity">
+      <End Role="AddressEntity" EntitySet="AddressEntities" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_StateProvince" Association="CoreITModel.FK_Address_StateProvince">
+      <End Role="StateProvince" EntitySet="StateProvinces" />
+      <End Role="Address" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentDetails_Employee" Association="CoreITModel.FK_AssignmentDetails_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="AssignmentDetails" EntitySet="AssignmentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentDetails_Vendor" Association="CoreITModel.FK_AssignmentDetails_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="AssignmentDetails" EntitySet="AssignmentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expenses_Employee" Association="CoreITModel.FK_Expenses_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Expenses" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImmigrationDetails_Employee" Association="CoreITModel.FK_ImmigrationDetails_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ImmigrationDetails" EntitySet="ImmigrationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Employee" Association="CoreITModel.FK_Payment_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Salary" EntitySet="Salaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentHistory_Employee" Association="CoreITModel.FK_PaymentHistory_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="PaymentDetails" EntitySet="PaymentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImmigrationDetails_VisaStatus" Association="CoreITModel.FK_ImmigrationDetails_VisaStatus">
+      <End Role="VisaStatus" EntitySet="VisaStatus" />
+      <End Role="ImmigrationDetails" EntitySet="ImmigrationDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EntityTypeId" Type="Int32" Nullable="false" />
+    <Property Name="EntityId" Type="Int32" Nullable="false" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="StateProvinceId" Type="Int32" Nullable="false" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="AddressEntity" Relationship="CoreITModel.FK_Address_Entity" FromRole="Address" ToRole="AddressEntity" />
+    <NavigationProperty Name="StateProvince" Relationship="CoreITModel.FK_Address_StateProvince" FromRole="Address" ToRole="StateProvince" />
+  </EntityType>
+  <EntityType Name="AddressEntity">
+    <Key>
+      <PropertyRef Name="AddressEntityTypeId" />
+    </Key>
+    <Property Name="AddressEntityTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Addresses" Relationship="CoreITModel.FK_Address_Entity" FromRole="AddressEntity" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="AssignmentDetail">
+    <Key>
+      <PropertyRef Name="AssignmentId" />
+    </Key>
+    <Property Name="AssignmentId" Type="Int32" Nullable="false" />
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="Organization" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Duration" Type="Int32" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="HourlyRate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="W2" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Employee" Relationship="CoreITModel.FK_AssignmentDetails_Employee" FromRole="AssignmentDetails" ToRole="Employee" />
+    <NavigationProperty Name="Vendor" Relationship="CoreITModel.FK_AssignmentDetails_Vendor" FromRole="AssignmentDetails" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpId" />
+    </Key>
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NationalId" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="HireDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateResigned" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="AssignmentDetails" Relationship="CoreITModel.FK_AssignmentDetails_Employee" FromRole="Employee" ToRole="AssignmentDetails" />
+    <NavigationProperty Name="Expenses" Relationship="CoreITModel.FK_Expenses_Employee" FromRole="Employee" ToRole="Expenses" />
+    <NavigationProperty Name="ImmigrationDetails" Relationship="CoreITModel.FK_ImmigrationDetails_Employee" FromRole="Employee" ToRole="ImmigrationDetails" />
+    <NavigationProperty Name="Salaries" Relationship="CoreITModel.FK_Payment_Employee" FromRole="Employee" ToRole="Salary" />
+    <NavigationProperty Name="PaymentDetails" Relationship="CoreITModel.FK_PaymentHistory_Employee" FromRole="Employee" ToRole="PaymentDetails" />
+  </EntityType>
+  <EntityType Name="Expens">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="ExpenseType" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Eventdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AmountSettled" Type="Boolean" />
+    <Property Name="PaidBy" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Employee" Relationship="CoreITModel.FK_Expenses_Employee" FromRole="Expenses" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="ImmigrationDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="VisaType" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="VisaStatus" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Employee" Relationship="CoreITModel.FK_ImmigrationDetails_Employee" FromRole="ImmigrationDetails" ToRole="Employee" />
+    <NavigationProperty Name="VisaStatu" Relationship="CoreITModel.FK_ImmigrationDetails_VisaStatus" FromRole="ImmigrationDetails" ToRole="VisaStatus" />
+  </EntityType>
+  <EntityType Name="PaymentDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="PayDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PayPerW2" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="ActualPay" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="MiscPay" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Comments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Employee" Relationship="CoreITModel.FK_PaymentHistory_Employee" FromRole="PaymentDetails" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="0" />
+    <Property Name="PayW2" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="HourlyShare" Type="Decimal" Precision="5" Scale="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Employee" Relationship="CoreITModel.FK_Payment_Employee" FromRole="Salary" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="StateProvince">
+    <Key>
+      <PropertyRef Name="StateProvinceId" />
+    </Key>
+    <Property Name="StateProvinceId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StateProvinceCode" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Addresses" Relationship="CoreITModel.FK_Address_StateProvince" FromRole="StateProvince" ToRole="Address" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorId" />
+    </Key>
+    <Property Name="VendorId" Type="Int32" Nullable="false" />
+    <Property Name="VendorName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AssignmentDetails" Relationship="CoreITModel.FK_AssignmentDetails_Vendor" FromRole="Vendor" ToRole="AssignmentDetails" />
+  </EntityType>
+  <EntityType Name="VisaStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="StatusDescription" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ImmigrationDetails" Relationship="CoreITModel.FK_ImmigrationDetails_VisaStatus" FromRole="VisaStatus" ToRole="ImmigrationDetails" />
+  </EntityType>
+  <Association Name="FK_Address_Entity">
+    <End Role="AddressEntity" Type="CoreITModel.AddressEntity" Multiplicity="1" />
+    <End Role="Address" Type="CoreITModel.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressEntity">
+        <PropertyRef Name="AddressEntityTypeId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="EntityTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_StateProvince">
+    <End Role="StateProvince" Type="CoreITModel.StateProvince" Multiplicity="1" />
+    <End Role="Address" Type="CoreITModel.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateProvince">
+        <PropertyRef Name="StateProvinceId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="StateProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentDetails_Employee">
+    <End Role="Employee" Type="CoreITModel.Employee" Multiplicity="1" />
+    <End Role="AssignmentDetails" Type="CoreITModel.AssignmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="AssignmentDetails">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentDetails_Vendor">
+    <End Role="Vendor" Type="CoreITModel.Vendor" Multiplicity="1" />
+    <End Role="AssignmentDetails" Type="CoreITModel.AssignmentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorId" />
+      </Principal>
+      <Dependent Role="AssignmentDetails">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expenses_Employee">
+    <End Role="Employee" Type="CoreITModel.Employee" Multiplicity="1" />
+    <End Role="Expenses" Type="CoreITModel.Expens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="Expenses">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImmigrationDetails_Employee">
+    <End Role="Employee" Type="CoreITModel.Employee" Multiplicity="1" />
+    <End Role="ImmigrationDetails" Type="CoreITModel.ImmigrationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="ImmigrationDetails">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Employee">
+    <End Role="Employee" Type="CoreITModel.Employee" Multiplicity="1" />
+    <End Role="Salary" Type="CoreITModel.Salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="Salary">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentHistory_Employee">
+    <End Role="Employee" Type="CoreITModel.Employee" Multiplicity="1" />
+    <End Role="PaymentDetails" Type="CoreITModel.PaymentDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="PaymentDetails">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImmigrationDetails_VisaStatus">
+    <End Role="VisaStatus" Type="CoreITModel.VisaStatu" Multiplicity="1" />
+    <End Role="ImmigrationDetails" Type="CoreITModel.ImmigrationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VisaStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImmigrationDetails">
+        <PropertyRef Name="VisaStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

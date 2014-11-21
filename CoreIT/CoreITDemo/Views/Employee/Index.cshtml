@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.8.3.js"></script>
+<script src="~/Scripts/knockout-3.2.0.debug.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+<script src="~/Scripts/knockout.validation.debug.js"></script>
+<script src="~/Scripts/Employee.js"></script>
+
+<section>
+
+    <div class="Registration">
+        <div class="Registration-header">Employee Registration</div>
+        <div>
+            <input type="text" data-bind="value: $root.Firstname" placeholder="Firstname" />
+            <p data-bind="validationMessage:$root.Firstname"></p>
+        </div>
+        <div>
+            <input type="text" data-bind="value: $root. Lastname" placeholder="Lastname" />
+        </div>
+        <div>
+            <select id="ddlImmigrationStatus" data-bind="options: ImmigrationList, value:SelectedImmigrationStatus, optionsCaption:'Immigration Status ..'">
+            </select>
+        </div>
+        <div>
+            <span>Join Date:</span>
+            <input type="date" name="hireDate" id="hireDate" data-bind="value: $root.HireDate" />
+        </div>
+        <div>
+            <input type="number" placeholder="Salary" title="salary" data-bind="value: $root.Salary" />
+        </div>
+        <div>
+            <input type="text" placeholder="Address1" data-bind="value: $root.Address1" />
+        </div>
+        <div>
+            <input type="text" placeholder="Address2" data-bind="value: $root.Address2" />
+        </div>
+        <div>
+            <input type="text" placeholder="City" data-bind="value: $root.City" />
+        </div>
+        <div>
+            <input type="text" placeholder="State" data-bind="value: $root.StateOrProvince" maxlength="2" />
+        </div>
+        <div>
+            <input type="text" placeholder="PostalCode" data-bind="value: $root.PostalCode"  />
+        </div>
+        <div>
+            <input type="tel" placeholder="Contact" maxlength="10" data-bind="value: $root.Contact" />
+        </div>
+        <div>
+            <input type="email" placeholder="email" data-bind="value: $root.EmailId" />
+        </div>
+        <div>
+            <input type="button" name="AddEmployee" value="Add Employee" data-bind="click: addEmployee" />
+        </div>
+    </div>
+
+    <div class="Listing">
+        <div class="Registration-header">Employee</div>
+        <table>
+            <tr>
+                <th>Id
+                </th>
+                <th>Firstname
+                </th>
+                <th>Lastname
+                </th>
+                <th>ImmigrationStatus
+                </th>
+                <th>Salary
+                </th>
+                <th>Action
+                </th>
+            </tr>
+
+            <tbody data-bind="template: {name: currentTemplate, foreach: Employees}"></tbody>
+        </table>
+        <script type="text/html" id="readonlyTemplate">
+            <tr>
+                <td data-bind="text: EmpId"></td>
+                <td data-bind="text: Firstname"></td>
+                <td data-bind="text: Lastname"></td>
+                <td data-bind="text: ImmigrationStatus"></td>
+                <td data-bind="text: Salary"></td>
+                <td>
+                    <input type="button" id="btnEdit" value="Edit" data-bind="click: function(){ $root.editTemplate($data);}" />
+                    <input type="button" id="btnDelete" value="Delete" data-bind="click: function() { $root.DeleteEmployee($data);}" />
+                </td>
+            </tr>
+        </script>
+        <script type="text/html" id="editTemplate">
+            <tr>
+                <td data-bind="text: $data.EmpId" ></td>                
+                <td>
+                    <input type="text" class="editTemplate-inbox" id="edtFname" data-bind="value: $data.Firstname" />
+                </td>
+                <td>
+                    <input type="text" class="editTemplate-inbox" id="edtLname" data-bind="value: $data.Lastname" />
+                </td>
+                <td>
+                    <select id="editImmigrationStatus" data-bind="options: $root.ImmigrationList, value:$root.SelectedImmigrationStatus, selectedOption: $root.SelectedImmigrationStatus">
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="editTemplate-inbox" id="edtSalary" data-bind="value: $data.Salary" />
+                </td>
+                <td>
+                    <input type="button" id="btnSave" value="Save" data-bind="click: $root.UpdateEmployee" />
+                    <input type="button" id="btnCancel" value="Cancel" data-bind="click: function() { $root.reset();}" />
+                </td>
+
+            </tr>
+        </script>
+    </div>
+
+
+</section>
+
+
+

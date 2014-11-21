@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoreITModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CoreITModelStoreContainer">
+    <EntitySet Name="Address" EntityType="CoreITModel.Store.Address" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AddressEntity" EntityType="CoreITModel.Store.AddressEntity" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssignmentDetails" EntityType="CoreITModel.Store.AssignmentDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employee" EntityType="CoreITModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Expenses" EntityType="CoreITModel.Store.Expenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ImmigrationDetails" EntityType="CoreITModel.Store.ImmigrationDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PaymentDetails" EntityType="CoreITModel.Store.PaymentDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Salary" EntityType="CoreITModel.Store.Salary" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StateProvince" EntityType="CoreITModel.Store.StateProvince" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vendor" EntityType="CoreITModel.Store.Vendor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VisaStatus" EntityType="CoreITModel.Store.VisaStatus" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Address_Entity" Association="CoreITModel.Store.FK_Address_Entity">
+      <End Role="AddressEntity" EntitySet="AddressEntity" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Address_StateProvince" Association="CoreITModel.Store.FK_Address_StateProvince">
+      <End Role="StateProvince" EntitySet="StateProvince" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentDetails_Employee" Association="CoreITModel.Store.FK_AssignmentDetails_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="AssignmentDetails" EntitySet="AssignmentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentDetails_Vendor" Association="CoreITModel.Store.FK_AssignmentDetails_Vendor">
+      <End Role="Vendor" EntitySet="Vendor" />
+      <End Role="AssignmentDetails" EntitySet="AssignmentDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expenses_Employee" Association="CoreITModel.Store.FK_Expenses_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Expenses" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImmigrationDetails_Employee" Association="CoreITModel.Store.FK_ImmigrationDetails_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ImmigrationDetails" EntitySet="ImmigrationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImmigrationDetails_VisaStatus" Association="CoreITModel.Store.FK_ImmigrationDetails_VisaStatus">
+      <End Role="VisaStatus" EntitySet="VisaStatus" />
+      <End Role="ImmigrationDetails" EntitySet="ImmigrationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Employee" Association="CoreITModel.Store.FK_Payment_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Salary" EntitySet="Salary" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentHistory_Employee" Association="CoreITModel.Store.FK_PaymentHistory_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="PaymentDetails" EntitySet="PaymentDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="AddressId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EntityTypeId" Type="int" Nullable="false" />
+    <Property Name="EntityId" Type="int" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" Nullable="false" MaxLength="60" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="60" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="StateProvinceId" Type="int" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="25" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AddressEntity">
+    <Key>
+      <PropertyRef Name="AddressEntityTypeId" />
+    </Key>
+    <Property Name="AddressEntityTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="AssignmentDetails">
+    <Key>
+      <PropertyRef Name="AssignmentId" />
+    </Key>
+    <Property Name="AssignmentId" Type="int" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="VendorId" Type="int" Nullable="false" />
+    <Property Name="Organization" Type="nvarchar" MaxLength="50" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="HourlyRate" Type="money" Nullable="false" />
+    <Property Name="W2" Type="money" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmpId" />
+    </Key>
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Gender" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="NationalId" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HireDate" Type="date" Nullable="false" />
+    <Property Name="DateResigned" Type="date" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Expenses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="ExpenseType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Eventdate" Type="date" Nullable="false" />
+    <Property Name="AmountSettled" Type="bit" />
+    <Property Name="PaidBy" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="ModifiedBy" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ImmigrationDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="VisaType" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="VisaStatus" Type="int" Nullable="false" />
+    <Property Name="EffectiveFrom" Type="date" Nullable="false" />
+    <Property Name="ExpirationDate" Type="date" Nullable="false" />
+    <Property Name="ModifiedDate" Type="date" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PaymentDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="PayDate" Type="date" Nullable="false" />
+    <Property Name="PayPerW2" Type="money" Nullable="false" />
+    <Property Name="ActualPay" Type="money" Nullable="false" />
+    <Property Name="MiscPay" Type="money" />
+    <Property Name="Comments" Type="text" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="EffectiveDate" Type="date" Nullable="false" />
+    <Property Name="ExpirationDate" Type="date" />
+    <Property Name="PayW2" Type="money" />
+    <Property Name="HourlyShare" Type="decimal" Precision="5" Scale="3" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="StateProvince">
+    <Key>
+      <PropertyRef Name="StateProvinceId" />
+    </Key>
+    <Property Name="StateProvinceId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StateProvinceCode" Type="char" Nullable="false" MaxLength="2" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorId" />
+    </Key>
+    <Property Name="VendorId" Type="int" Nullable="false" />
+    <Property Name="VendorName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VisaStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="StatusDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Address_Entity">
+    <End Role="AddressEntity" Type="CoreITModel.Store.AddressEntity" Multiplicity="1" />
+    <End Role="Address" Type="CoreITModel.Store.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AddressEntity">
+        <PropertyRef Name="AddressEntityTypeId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="EntityTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Address_StateProvince">
+    <End Role="StateProvince" Type="CoreITModel.Store.StateProvince" Multiplicity="1" />
+    <End Role="Address" Type="CoreITModel.Store.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateProvince">
+        <PropertyRef Name="StateProvinceId" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="StateProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentDetails_Employee">
+    <End Role="Employee" Type="CoreITModel.Store.Employee" Multiplicity="1" />
+    <End Role="AssignmentDetails" Type="CoreITModel.Store.AssignmentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="AssignmentDetails">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentDetails_Vendor">
+    <End Role="Vendor" Type="CoreITModel.Store.Vendor" Multiplicity="1" />
+    <End Role="AssignmentDetails" Type="CoreITModel.Store.AssignmentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorId" />
+      </Principal>
+      <Dependent Role="AssignmentDetails">
+        <PropertyRef Name="VendorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expenses_Employee">
+    <End Role="Employee" Type="CoreITModel.Store.Employee" Multiplicity="1" />
+    <End Role="Expenses" Type="CoreITModel.Store.Expenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="Expenses">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImmigrationDetails_Employee">
+    <End Role="Employee" Type="CoreITModel.Store.Employee" Multiplicity="1" />
+    <End Role="ImmigrationDetails" Type="CoreITModel.Store.ImmigrationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="ImmigrationDetails">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImmigrationDetails_VisaStatus">
+    <End Role="VisaStatus" Type="CoreITModel.Store.VisaStatus" Multiplicity="1" />
+    <End Role="ImmigrationDetails" Type="CoreITModel.Store.ImmigrationDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VisaStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImmigrationDetails">
+        <PropertyRef Name="VisaStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Employee">
+    <End Role="Employee" Type="CoreITModel.Store.Employee" Multiplicity="1" />
+    <End Role="Salary" Type="CoreITModel.Store.Salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="Salary">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentHistory_Employee">
+    <End Role="Employee" Type="CoreITModel.Store.Employee" Multiplicity="1" />
+    <End Role="PaymentDetails" Type="CoreITModel.Store.PaymentDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="PaymentDetails">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

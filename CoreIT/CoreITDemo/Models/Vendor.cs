@@ -9,6 +9,7 @@ namespace CoreITDemo.Models
         public Vendor()
         {
             this.Address = new HashSet<Address>();
+            this.Assignment = new HashSet<Assignment>();
         }
 
         [Key]
@@ -18,5 +19,6 @@ namespace CoreITDemo.Models
         public DateTime ModifiedDate { get; set; }
 
         public virtual ICollection<Address> Address { get; set; }
+        public virtual ICollection<Assignment> Assignment { get; set; }
     }
 }

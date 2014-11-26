@@ -5,13 +5,13 @@ namespace CoreITDemo.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class _20141120_Address : IMigrationMetadata
+    public sealed partial class _20141126_Assignments : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_20141120_Address));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_20141126_Assignments));
         
         string IMigrationMetadata.Id
         {
-            get { return "201411201851368_20141120_Address"; }
+            get { return "201411261718081_20141126_Assignments"; }
         }
         
         string IMigrationMetadata.Source

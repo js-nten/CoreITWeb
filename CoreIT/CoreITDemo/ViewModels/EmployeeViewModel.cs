@@ -17,7 +17,7 @@ namespace CoreITDemo.ViewModels
         [Required]
         public string ImmigrationStatus { get; set; }
         public decimal? Salary { get; set; }
-        public DateTime HireDate { get; set; }
+        public string HireDate { get; set; }
         public DateTime? SalaryEffectiveDate { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }

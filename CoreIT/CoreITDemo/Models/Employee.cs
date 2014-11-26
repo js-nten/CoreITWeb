@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoreITDemo.Models
@@ -13,6 +11,7 @@ namespace CoreITDemo.Models
             this.SalaryRecords = new HashSet<Salary>();
             this.Address = new HashSet<Address>();
             this.Payments = new HashSet<Payment>();
+            this.Assignments = new HashSet<Assignment>();
         }
         [Key]
         public int EmpId { get; set; }
@@ -24,6 +23,7 @@ namespace CoreITDemo.Models
         public virtual ICollection<Salary> SalaryRecords { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<Address> Address { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
     }
 
     public enum ImmigrationStatus

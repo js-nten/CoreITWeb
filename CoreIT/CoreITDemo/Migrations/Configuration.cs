@@ -59,6 +59,19 @@ namespace CoreITDemo.Migrations
                 new Payment(){ EmpId= 1, PaidAmount=2500.00M, PaidOn= new DateTime(2014,06,15), PaymentType = PaymentType.MiscExpenses, Comments="Insurnace money", TransactionDate=new DateTime(2014,06,15)}
             };
             context.Payments.AddOrUpdate(payments);
+
+            Assignment[] assignments = new[] {
+                new Assignment(){ StartDate=new DateTime(2013,10,18), EndDate=new DateTime(2014,07,31), EmpId = 1, VendorId = 1,  HourlyRate = 55.0M, EmpShare = 0.8M, Workplace="KinderMorgan", ModifiedDate= DateTime.Today},
+                new Assignment(){ StartDate=new DateTime(2014,01,08), EndDate=new DateTime(2015,06,30), EmpId = 1, VendorId = 1,  HourlyRate = 65.0M, EmpShare = 0.8M, Workplace="KinderMorgan", ModifiedDate= DateTime.Today},
+                new Assignment(){ StartDate=new DateTime(2014,01,01), EndDate=new DateTime(2015,06,30), EmpId = 3, VendorId = 1,  HourlyRate = 70.0M, EmpShare = 0.8M, Workplace="KinderMorgan", ModifiedDate= DateTime.Today}
+            };
+            context.Assignments.AddOrUpdate(assignments);
+
+            BillingDetails[] billing = new[] {
+                new BillingDetails(){ AssignmentId = 1, BillingDate = new DateTime(2013,12,15), TotalHours = 184.0M, ActualHours = 104.0M, Comments = "Oct 2013 Billing"},
+                new BillingDetails(){ AssignmentId = 1, BillingDate = new DateTime(2014,01,15), TotalHours = 152.0M, ActualHours = 152.0M, Comments = "Nov 2013 Billing"},
+                new BillingDetails(){ AssignmentId = 1, BillingDate = new DateTime(2014,02,15), TotalHours = 168.0M, ActualHours = 168.0M, Comments = "Dec 2013 Billing"}
+            };
         }
     }
 }

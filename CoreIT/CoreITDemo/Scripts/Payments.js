@@ -58,13 +58,13 @@
         };
 
         //Retrieve Immigration Enumerations from server
-        self.EmployeesList = function () {
-
+        self.GetEmployeesList = function () {
+            alert('fetching employee list');
             self.EmployeesList.removeAll();
-
+            alert('fetching employee list');
             $.getJSON("/api/EmployeeAPI", function (data) {
                 $.each(data, function (key, value) {
-
+                    
                     if (value != 1) {
                         $.each(value, function (k, l) {                            
                             self.EmployeesList.push(l.EmpId + "-" + l.Firstname);
@@ -145,8 +145,8 @@
 
 
         //Default action
-        self.EmployeesList();
-        self.Retrieve();
+        self.GetEmployeesList();
+        //self.Retrieve();
     };
 
     ko.applyBindings(new PaymentsViewModel());

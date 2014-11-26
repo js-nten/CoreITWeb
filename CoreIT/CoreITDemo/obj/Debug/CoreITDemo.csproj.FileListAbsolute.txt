@@ -123,9 +123,11 @@ C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\bin\System.We
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\bin\System.Web.WebPages.xml
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\bin\System.Web.WebPages.Deployment.xml
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\bin\System.Web.WebPages.Razor.xml
-C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.csprojResolveAssemblyReference.cache
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.dll
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.pdb
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.Migrations._20141121_Initial.resources
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.csproj.GenerateResource.Cache
 C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.Migrations.Payment_20141121.resources
+C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.csprojResolveAssemblyReference.cache
+C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.Migrations._20141126_Assignments.resources
+C:\Users\tenunag1\Source\Repos\CoreIT\CoreIT-Web\CoreIT\CoreITDemo\obj\Debug\CoreITDemo.Migrations.Billing_11262014.resources

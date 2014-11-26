@@ -23,6 +23,8 @@ namespace CoreITDemo.Models
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<BillingDetails> BillingDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,6 +36,13 @@ namespace CoreITDemo.Models
             modelBuilder.Entity<Payment>().HasKey(p => new { p.EmpId, p.PaymentType });
             modelBuilder.Entity<Payment>().HasRequired(p => p.Employee).WithMany(e => e.Payments).HasForeignKey(p => p.EmpId).WillCascadeOnDelete();
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Assignment>().HasKey(a => a.AssignmentId);
+            modelBuilder.Entity<Assignment>().HasRequired(a => a.Employee).WithMany(e => e.Assignments).HasForeignKey(a => a.EmpId).WillCascadeOnDelete();
+            modelBuilder.Entity<Assignment>().HasRequired(a => a.Vendor).WithMany(e => e.Assignment).HasForeignKey(a => a.VendorId).WillCascadeOnDelete();
+
+            modelBuilder.Entity<BillingDetails>().HasKey(b => b.BillingId);
+            modelBuilder.Entity<BillingDetails>().HasRequired(b => b.Assignment).WithMany(a => a.BillingDetails).HasForeignKey(b => b.AssignmentId).WillCascadeOnDelete();
         }
 
         

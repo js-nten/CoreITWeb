@@ -60,7 +60,7 @@
                     if (value != 1) {
                         $.each(value, function (k, l) {
                             self.Employees.push(l);
-                            alert(l.EmpId + " : " + l.Contact + " : " + l.EmailId);
+                            //alert(l.EmpId + " : " + l.Contact + " : " + l.EmailId);
                         });
                     };
                 });

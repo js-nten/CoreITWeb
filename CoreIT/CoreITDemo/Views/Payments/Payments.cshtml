@@ -2,9 +2,16 @@
     ViewBag.Title = "Payments";
 }
 
-<div id="PaymentsHeader">
-    <label id="lblList">Select Employee:</label>
-        <select id="empList" data-bind="options: Employees, value:SelectedEmployeeId, optionsCaption:'Select Employee Id'">
-        </select>
+<script src="~/Scripts/jquery-1.8.3.js"></script>
+<script src="~/Scripts/knockout-3.2.0.debug.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+<script src="~/Scripts/knockout.validation.debug.js"></script>
+<script src="~/Scripts/Payments.js"></script>
 
+<div id="PaymentsHeader">
+    <p>
+        <span id="lblList">Select Employee:</span>
+        <select id="empList" data-bind="options: EmployeesList, value:SelectedEmployeeId, optionsCaption:'Select Employee Id'">
+        </select>
+    </p>
 </div>

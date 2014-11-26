@@ -147,8 +147,18 @@
     <Compile Include="Migrations\201411212210529_Payment_20141121.Designer.cs">
       <DependentUpon>201411212210529_Payment_20141121.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411261718081_20141126_Assignments.cs" />
+    <Compile Include="Migrations\201411261718081_20141126_Assignments.Designer.cs">
+      <DependentUpon>201411261718081_20141126_Assignments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411262121590_Billing_11262014.cs" />
+    <Compile Include="Migrations\201411262121590_Billing_11262014.Designer.cs">
+      <DependentUpon>201411262121590_Billing_11262014.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\BillingDetails.cs" />
     <Compile Include="Models\CoreITDemoContext.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Payment.cs" />
@@ -508,6 +518,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411212210529_Payment_20141121.resx">
       <DependentUpon>201411212210529_Payment_20141121.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411261718081_20141126_Assignments.resx">
+      <DependentUpon>201411261718081_20141126_Assignments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411262121590_Billing_11262014.resx">
+      <DependentUpon>201411262121590_Billing_11262014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

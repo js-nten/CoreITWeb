@@ -69,7 +69,7 @@ namespace CoreITDemo.Controllers
                                                   Lastname = e.Lastname,
                                                   ImmigrationStatus = Enum.GetName(typeof(ImmigrationStatus), e.ImmigrationStatus),
                                                   Salary = e.PerW2,
-                                                  HireDate = e.HireDate,
+                                                  HireDate = e.HireDate.ToShortDateString(),
                                                   Address1 = e.Address1,
                                                   Address2 = e.Address2,
                                                   City = e.City,
